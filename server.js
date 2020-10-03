@@ -4,13 +4,15 @@ const https = require('https')
 const mongoose = require('mongoose')
 const _ = require('lodash')
 
+const PORT = process.env.PORT || 3000
+
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost:27017/todolistDB', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
+mongoose.connect('mongodb+srv://gadai123:gadai123@cluster0.cndjo.mongodb.net/todolistDB', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
     console.log('Connected to database');
 }).catch(err => {
     console.log('failed to connect ', err);
@@ -127,6 +129,6 @@ app.post('/delete', (req, res) => {
 
 
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Server started on port 3000')
 })
